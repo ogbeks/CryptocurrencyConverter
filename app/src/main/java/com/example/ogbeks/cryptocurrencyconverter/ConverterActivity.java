@@ -2,6 +2,7 @@ package com.example.ogbeks.cryptocurrencyconverter;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,9 @@ public class ConverterActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(countryName);
         //Get the data parse from the MainActivity
 
         countryName = getIntent().getStringExtra("country");
@@ -70,8 +74,9 @@ public class ConverterActivity extends AppCompatActivity implements AdapterView.
         double amountConverter;
 
         if (editInputAmount== null || editInputAmount.length()==0||editInputAmount.equals("")||editInputAmount.isEmpty()){
-            inputAmountText.setError("Pls,Enter the amount");
-            inputAmountText.requestFocus();
+            convertedAmount.setText("Please, fill in the amount to convert.");
+            convertedAmount.setTextColor(getResources().getColor(R.color.bg_screen1));
+            convertedAmount.setTextSize(getResources().getDimension(R.dimen.slide_desc));
         }
         else {
             if(currencyFrom.matches(currencyTo))

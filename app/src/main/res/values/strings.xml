@@ -15,17 +15,17 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">Andela ALC Community</string>
+    <string name="slide_1_desc">This is a project design as entry into ALC 2.0. visit www.andela.com for more details.</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">BitCoin </string>
+    <string name="slide_2_desc">BitCoin is the most popular digital currency which was created in 2009. Bitcoin uses blockchain technology, a peer to peer electronic cash system that enables online Bitcoin payments. </string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Ethereum</string>
+    <string name="slide_3_desc">Launched in 2015, Ethereum is a distributed public blockchain network. Ether is also used by application developers to pay for transaction fees and services on the Ethereum network</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">CryptoCompare Converter</string>
+    <string name="slide_4_desc">This app show a list of top 20 world currencies equivalent cryptocurrencies of the BitCoin and Ethereum</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
