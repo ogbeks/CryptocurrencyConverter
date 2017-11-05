@@ -1,6 +1,7 @@
 package com.example.ogbeks.cryptocurrencyconverter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -74,17 +75,17 @@ public class MainActivity extends AppCompatActivity {
                 CryptoCurrency cryptoCurrency = cryptoCurrencies.get(position);
                 //this create and explicit intent which receive two params, the current context,
                 // and the activityClass for the intent
-               // Intent cryptoCurrencyProfile = new Intent(MainActivity.this, cryptoCurrencyProfileActivity.class);
+               Intent converterIntent = new Intent(MainActivity.this, ConverterActivity.class);
                 Log.v("MainActivity", cryptoCurrency.toString());
 
-//                //the putExtra method allows data to be parse together with the intent,
-//                //Here we pass the three @params for the next view : username, user GitHub url and user ImageResource
-//                userProfile.putExtra("username", user.getUsername());
-//                userProfile.putExtra("userImageResourceId", user.getUserImageUri());
-//                userProfile.putExtra("userGitHubUrl", user.getUserGitHubUrl());
-//
-//                //The UserProfile activity is instantiated
-//                startActivity(userProfile);
+                //the putExtra method allows data to be parse together with the intent,
+                //Here we pass the three @params for the next view : country name, btc rate, and eth rate
+                converterIntent.putExtra("country", cryptoCurrency.getCountryName());
+                converterIntent.putExtra("btcRate", cryptoCurrency.getBtcRate());
+                converterIntent.putExtra("ethRate", cryptoCurrency.getEthRate());
+
+                //The converter activity is instantiated
+                startActivity(converterIntent);
             }
 
         });

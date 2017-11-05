@@ -3,6 +3,13 @@
     <string name="no_crypto_currencys">No Currency found.</string>
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet_connection">No internet connection.</string>
+    <string name="spinner_from_helper">Choose a currency</string>
+    <string-array name="exchange_rate">
+    <item>BTC</item>
+    <item>ETH</item>
+    <item>BTC and ETH</item>
+    <item>EUR</item>
+    </string-array>
     <string name="title_activity_welcome">Home Screen</string>
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
