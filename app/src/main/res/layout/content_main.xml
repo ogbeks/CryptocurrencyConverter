@@ -73,12 +73,15 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_height="match_parent">
     <ListView
         android:layout_below="@id/list_placeholder"
         android:id="@+id/crypto_currency_converter"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
     </ListView>
-
-
+</android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

@@ -24,7 +24,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_welcome" />
-        <activity android:name=".ConverterActivity"></activity>
+        <activity android:name=".ConverterActivity"
+            android:label="Converter"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

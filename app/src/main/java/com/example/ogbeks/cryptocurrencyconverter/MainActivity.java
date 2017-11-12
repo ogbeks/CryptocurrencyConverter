@@ -6,10 +6,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout progressLayout;
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageButton refreshButton;
     CryptoCurrencyAsyncTask task = new CryptoCurrencyAsyncTask();
     /** Tag for the log messages */
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -36,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         cryptoCurrencyListView = (ListView) findViewById(R.id.crypto_currency_converter);
         cryptoCurrencyListView.setEmptyView(mEmptyStateTextView);
+        refreshButton = (ImageButton) findViewById(R.id.refresh_list);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         progressLayout = (RelativeLayout) findViewById(R.id.progressbar_view);
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -57,8 +65,33 @@ public class MainActivity extends AppCompatActivity {
 
             // Update empty state with no connection error message
             mEmptyStateTextView.setText(R.string.no_internet_connection);
+            refreshButton.setVisibility(View.VISIBLE);
+            refreshButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    swipeRefreshLayout.setRefreshing(true);
+                    task.execute(CryptoCompare_REQUEST_URL);
+                }
+            });
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.toolbar_main,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.refresh:
+                task.execute(CryptoCompare_REQUEST_URL);
+                break;
+            default:
+                break;
+        }
+        return true;
     }
     private void updateUri(final ArrayList<CryptoCurrency> cryptoCurrencies){
         // Create an {@link cryptoCurrencyAdapter}, whose data source is a list of
@@ -98,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
             progressLayout.setVisibility(View.VISIBLE);
             cryptoCurrencyListView.setVisibility(View.GONE);
-
+            refreshButton.setVisibility(View.GONE);
             super.onPreExecute();
         }
 
@@ -124,10 +157,20 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<CryptoCurrency> cryptoCurrencys) {
             if(cryptoCurrencys == null){
                 mEmptyStateTextView.setText(R.string.no_crypto_currencys);
+                refreshButton.setVisibility(View.VISIBLE);
             }
             progressLayout.setVisibility(View.GONE);
+            refreshButton.setVisibility(View.GONE);
             cryptoCurrencyListView.setVisibility(View.VISIBLE);
             updateUri(cryptoCurrencys);
+            swipeRefreshLayout.setRefreshing(false);
+            refreshButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    swipeRefreshLayout.setRefreshing(true);
+                    task.execute(CryptoCompare_REQUEST_URL);
+                }
+            });
         }
     }
 }

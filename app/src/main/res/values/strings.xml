@@ -27,7 +27,5 @@
     <string name="slide_4_title">CryptoCompare Converter</string>
     <string name="slide_4_desc">This app show a list of top 20 world currencies equivalent cryptocurrencies of the BitCoin and Ethereum</string>
 
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
-    <string name="play_again">Play Again</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

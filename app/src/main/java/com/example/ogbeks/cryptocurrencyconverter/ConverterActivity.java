@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -31,14 +32,16 @@ public class ConverterActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(countryName);
         //Get the data parse from the MainActivity
 
         countryName = getIntent().getStringExtra("country");
         btcRate = getIntent().getDoubleExtra("btcRate",0.00);
         ethRate = getIntent().getDoubleExtra("ethRate",0.00);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(countryName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CustomAddValues();
     }
 
@@ -70,15 +73,17 @@ public class ConverterActivity extends AppCompatActivity implements AdapterView.
 
         inputAmountText =(EditText) findViewById(R.id.inputAmount);
         String editInputAmount =inputAmountText.getText().toString().trim();
-        double inputAmount = Double.parseDouble(editInputAmount);
+        double inputAmount = 0.0;
         double amountConverter;
-
         if (editInputAmount== null || editInputAmount.length()==0||editInputAmount.equals("")||editInputAmount.isEmpty()){
+            Toast.makeText(this,"Pls input the amount to convert", Toast.LENGTH_SHORT);
             convertedAmount.setText("Please, fill in the amount to convert.");
             convertedAmount.setTextColor(getResources().getColor(R.color.bg_screen1));
-            convertedAmount.setTextSize(getResources().getDimension(R.dimen.slide_desc));
+            convertedAmount.setTextSize(getResources().getDimension(R.dimen.smalltext));
+
         }
         else {
+            inputAmount= Double.parseDouble(editInputAmount);
             if(currencyFrom.matches(currencyTo))
             {
                 convertedAmountLabel.setText(currencyTo);
